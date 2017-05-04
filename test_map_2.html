@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <style>
-
+.states :hover {
+  fill: red;
+}
 .state-borders {
   fill: none;
   stroke: #fff;
@@ -21,7 +23,7 @@
 
 <script>
 
-var statesGeoJSON = 'https://raw.githubusercontent.com/jgoodall/us-maps/master/geojson/state.geo.json';
+var statesGeoJSON = 'https://d3js.org/us-10m.v1.json';
 
 var svg = d3.select("svg");
 
@@ -37,12 +39,14 @@ d3.json(statesGeoJSON, function(error, us) {
     .enter().append("path")
       .attr("d", path);
 
-  // let mmm = Array.from($(".states")[0].children);
-  //
-  // const handleClick = (e) => {
-  //   e.target.style.stroke = '50px';
-  //   debugger
-  // }
+  let mmm = Array.from($(".states")[0].children);
+
+  const handleClick = (e) => {
+    console.log(e.target.special_id);
+    console.log(e.target.state_abbr);
+  }
+
+  const state_ids_obj = {0: "AR", 1: "CA", 2: "IL", 3: "KS", 4: "MS", 5: "OH", 6: "TX", 7: "AL", 8: "IA", 9: "LA", 10: "MN", 11: "MO", 12: "NE", 13: "AZ", 14: "CO", 15: "IN", 16: "MI", 17: "MT", 18: "NY", 19: "OR", 20: "VA", 21: "WY", 22: "NC", 23: "OK", 24: "TN", 25: "WI", 26: "AK", 27: "VT", 28: "ND", 29: "GA", 30: "ME", 31: "RI", 32: "WV", 33: "ID", 34: "SD", 35: "NM", 36: "WA", 37: "PA", 38: "FL", 39: "UT", 40: "KY", 41: "NH", 42: "SC", 43: "NV", 44: "HI", 45: "NY", 46: "CT", 47: "MD", 48: "MA", 49: "DE"};
   //
   // const handleHoverOn = (e) => {
   //   e.target.style.fill = 'purple';
@@ -52,15 +56,18 @@ d3.json(statesGeoJSON, function(error, us) {
   // //   e.target.style.fill = '';
   // // }
   //
-  // mmm.forEach( state => {
-  //   // debugger
-  //   state.style.fill = 'black';
-  //   state.onclick = handleClick;
-  //   // state.onmouseover = handleHoverOn;
-  //   // state.onmouseout = handleHoverOff;
-  //   state.onfocus = handleHoverOn;
-  //
-  // } );
+  let iter = 0;
+  mmm.forEach( state => {
+    state.special_id = iter;
+    iter ++;
+    state.state_abbr = state_ids_obj[state.special_id];
+    state.onclick = handleClick;
+    // debugger
+    // state.onmouseover = handleHoverOn;
+    // // state.onmouseout = handleHoverOff;
+    // state.onfocus = handleHoverOn;
+
+  } );
   svg.append("path")
       .attr("class", "state-borders")
       .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
