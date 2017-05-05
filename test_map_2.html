@@ -119,7 +119,6 @@ d3.json(statesGeoJSON, function(error, us) {
   window.mmm = Array.from($(".states")[0].children);
 
   const handleClick = (e) => {
-    console.log(e.target.state_abbr);
     let stateName = e.target.state_abbr;
     let sens = senators.filter( senator => senator.state === stateName ).map( senator => senator.first_name + ' ' + senator.last_name );
     $('#header').replaceWith(`<h1 id='header'>${state_hash[stateName]}</h1>`);
@@ -130,19 +129,20 @@ d3.json(statesGeoJSON, function(error, us) {
     $('#twitter-widget-0').replaceWith(`<a id='test' class="twitter-timeline" href="https://twitter.com/CNN">Tweets by realDonaldTrump</a>`);
     $('iframe').remove();
 
-    console.log(state_hash[stateName] + ' senators: ' + sens[0] + ' and ' + sens[1]);
-
-    console.log(state_hash[stateName] + ' senators: ' + sens[0] + ' and ' + sens[1]);
-
-      let formatted_name = sens[1].replace(' ', '%20');
-      $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name}&format=json&prop=pageimages&origin=*`, function(data) {
-          window.wiki_result = data.query.pages;
-          test_dest_img(wiki_result[Object.keys(window.wiki_result)[0]]);
-      });
-      const test_dest_img = ({ thumbnail }) => {
-        let piccy = thumbnail ? thumbnail.source : 'http://www.terry.uga.edu/digitalmarketing/images/icons/user.jpg';
-        $('#test-img').attr('src', piccy);
-      }
+    let formatted_name_0 = sens[0].replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie');
+    let formatted_name_1 = sens[1].replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie');
+    $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name_0}&format=json&prop=pageimages&origin=*`, function(data) {
+        window.wiki_result = data.query.pages;
+        test_dest_img(0, wiki_result[Object.keys(window.wiki_result)[0]]);
+    });
+    $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name_1}&format=json&prop=pageimages&origin=*`, function(data) {
+        window.wiki_result = data.query.pages;
+        test_dest_img(1, wiki_result[Object.keys(window.wiki_result)[0]]);
+    });
+    const test_dest_img = (num, { thumbnail }) => {
+      let piccy = thumbnail ? thumbnail.source : 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-128.png';
+      $(`#test-img-${num}`).attr('src', piccy);
+    }
 
   }
 
@@ -186,5 +186,6 @@ d3.json(statesGeoJSON, function(error, us) {
   <h1 id='header'>Click on a State</h1>
   <section id='state-info'>
   </section>
-  <img id='test-img' />
+  <img id='test-img-0' />
+  <img id='test-img-1' />
 </div>
