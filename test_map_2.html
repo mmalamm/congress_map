@@ -129,8 +129,8 @@ d3.json(statesGeoJSON, function(error, us) {
     $('#twitter-widget-0').replaceWith(`<a id='test' class="twitter-timeline" href="https://twitter.com/CNN">Tweets by realDonaldTrump</a>`);
     $('iframe').remove();
 
-    let formatted_name_0 = sens[0].replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie');
-    let formatted_name_1 = sens[1].replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie');
+    let formatted_name_0 = sens[0].replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie').replace('Richard','Dick');
+    let formatted_name_1 = sens[1].replace(' III', '').replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie').replace('Patrick','Pat');
     $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name_0}&format=json&prop=pageimages&origin=*`, function(data) {
         window.wiki_result = data.query.pages;
         test_dest_img(0, wiki_result[Object.keys(window.wiki_result)[0]]);
