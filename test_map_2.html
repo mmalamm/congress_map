@@ -2,24 +2,27 @@
 <style>
 
 body {
-  background-image: url(http://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Chalkboard-Backgrounds.jpg);
+  background-color: #002b55;
   justify-content: flex-end;
   color: white;
+  font-family: serif;
+}
+
+#main {
+  display: flex;
 }
 
 #info-box {
   word-wrap: break-word;
   border: 5px solid yellow;
+  /*display: none;*/
 }
 
-.header-text {
-  /*flex: none;*/
-}
 
 .state-borders {
   fill: none;
-  stroke: #f5f5f5;
-  stroke-width: .5px;
+  stroke: #002b55;
+  stroke-width: 3px;
   stroke-linejoin: none;
   stroke-linecap: none;
   pointer-events: none;
@@ -40,16 +43,19 @@ crossorigin="anonymous"></script>
       }, success: (data) => window.ajax_success(data)
     });
  -->
-<h1 class="header-text">Senators Map</h1>
-<svg width="960" height="600"></svg>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/topojson.v2.min.js"></script>
-<script src="./map_render.js"></script>
-<div id="info-box">
-  <h1 id='header'>Click on a State</h1>
-  <section id='state-info'>
-  </section>
-  <img id='test-img-0' />
-  <img id='test-img-1' />
-  <div id="twitter-timeline-container"></div>
+<div id="main">
+  <div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/US-Senate-Logo.svg" />
+  </div>
+  <svg width="960" height="600"></svg>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="./map_render.js"></script>
+  <div id="info-box">
+    <h1 id='header'>Click on a State</h1>
+    <section id='state-info'></section>
+    <img id='test-img-0' />
+    <img id='test-img-1' />
+    <div id="twitter-timeline-container"></div>
+  </div>
 </div>
