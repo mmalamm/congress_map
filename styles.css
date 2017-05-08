@@ -19,9 +19,6 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }*/
-
-
-
 body {
   background-color: #002b55;
   justify-content: center;
@@ -40,6 +37,11 @@ nav {
 .nav_logo {
   padding-right: 5px;
   height: 15px;
+}
+
+strong {
+  font-weight: bolder;
+  font-size: 20px;
 }
 
 h1 {
@@ -88,6 +90,9 @@ header img {
   text-align: center;
 }
 
+#sen-info {
+  padding-right: 5px;
+}
 
 #buttons {
   display: flex;

@@ -78,12 +78,20 @@ const renderBtn = (num, name, st, sen) => {
     <div class='info-box'>
       <div style='background-color: ${btnColor(sen.party)}' btnDiv${num}'>
         <div class='btn-contents'>
-        <img height='150px' width='120px' class='sen-img'  id='sen-img-${num}' style='border: 10px solid ${btnColor(sen.party)}' />
-        <p id='sen-info'>${name} (${sen.party}-${sen.state})
+        <img height='220px' width='auto' class='sen-img'  id='sen-img-${num}' style='border: 10px solid ${btnColor(sen.party)}' />
+        <p id='sen-info'><strong>${name} (${sen.party}-${sen.state})</strong>
+          <br>
           <br>
           Web: <a href='https://${sen.domain}'>${sen.domain}</a>
           <br>
+          <br>
           Phone: ${sen.phone}
+          <br>
+          <br>
+          Office: ${sen.office.replace('Senate Office Building', '')}
+          <br>
+            Senate Office Building
+          <br>
           <br>
           <img class='nav_logo' src='src/twitter_logo.svg' /> ${sen.twitter_account}
           <br>
@@ -150,7 +158,7 @@ const renderImg = (num, sen_name) => {
 };
 
 const appendImg = (num, { thumbnail }) => {
-  let piccy = thumbnail ? thumbnail.source : 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-128.png';
+  let piccy = thumbnail ? thumbnail.source : 'src/congress-icon.svg';
   piccy = piccy.replace(/\d+px/, '150px');
   $(`#sen-img-${num}`).attr('src', piccy);
 };
