@@ -96,6 +96,7 @@ const renderBtn = (num, name, st, sen) => {
             Senate Office Building
           <br>
           <br>
+            Votes with party <span style="font-weight:bolder;font-size:18px">${sen.votes_with_party_pct}%</span> of the time
         </p>
       </div>
       </div>
