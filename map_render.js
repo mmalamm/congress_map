@@ -141,7 +141,7 @@ window.mmm.forEach( state => {
   state.onclick = handleClick;
   state.onmouseover = handleHoverOn;
   state.onmouseout = handleHoverOff;
-  // state.onfocus = handleFocus;
+  state.onfocus = handleFocus;
 
 } );
 svg.append("path")
