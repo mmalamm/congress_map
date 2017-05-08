@@ -72,7 +72,6 @@ const renderBtn = (num, name, st, sen) => {
                 Tweets by ${sen.twitter_account}</a>
                 <script async src="https://platform.twitter.com/widgets.js"
                 charset="utf-8"></script>`;
-
   let btnDiv = $(`.btnDiv${num}`);
   btnDiv.empty().append(
     `
@@ -80,11 +79,15 @@ const renderBtn = (num, name, st, sen) => {
       <div style='background-color: ${btnColor(sen.party)}' btnDiv${num}'>
         <div class='btn-contents'>
         <img height='150px' width='120px' class='sen-img'  id='sen-img-${num}' style='border: 10px solid ${btnColor(sen.party)}' />
-        <p id='sen-info'>${name} (${sen.party})
+        <p id='sen-info'>${name} (${sen.party}-${sen.state})
           <br>
-          ${st}
+          Web: <a href='https://${sen.domain}'>${sen.domain}</a>
+          <br>
+          <img class='nav_logo' src='src/twitter_logo.svg' /> ${sen.twitter_account}
+          <br>
+          Next Election: ${sen.next_election}
         </p>
-        </div>
+      </div>
       </div>
       <div class='tw-feed' style='border: 10px solid ${btnColor(sen.party)}'  id='twitter-timeline-container-${num}' >
 
