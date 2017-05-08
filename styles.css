@@ -1,0 +1,64 @@
+body {
+  background-color: #002b55;
+  justify-content: flex-end;
+  color: white;
+  font-family: serif;
+}
+
+#main {
+  display: flex;
+}
+
+
+.state-borders {
+  fill: none;
+  stroke: #002b55;
+  stroke-width: 3px;
+  stroke-linejoin: none;
+  stroke-linecap: none;
+  pointer-events: none;
+}
+
+.map-svg {
+  border: 5px solid yellow;
+}
+
+.buttons {
+  display: flex;
+  margin: 10px;
+  height: 100px;
+}
+
+.R-tag {
+  background-color: #B24C63;
+}
+
+.D-tag {
+  background-color: #2B5CCE;
+}
+
+.buttons > div {
+  flex: auto;
+  display: block;
+  width: 1px;
+}
+
+.btn-contents {
+  display: flex;
+  padding: 5px;
+}
+
+.buttons > div > * {
+  margin: 20px;
+}
+
+.btnDiv0, .btnDiv1 {
+  box-sizing: border-box;
+}
+.btnDiv0 img, .btnDiv1 img {
+  border: 10px solid white;
+}
+
+.mapnbuttons {
+  display: block;
+}

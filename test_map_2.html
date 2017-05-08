@@ -1,40 +1,10 @@
 <!DOCTYPE html>
-<style>
-
-body {
-  background-color: #002b55;
-  justify-content: flex-end;
-  color: white;
-  font-family: serif;
-}
-
-#main {
-  display: flex;
-}
-
-#info-box {
-  word-wrap: break-word;
-  border: 5px solid yellow;
-  /*display: none;*/
-}
-
-
-.state-borders {
-  fill: none;
-  stroke: #002b55;
-  stroke-width: 3px;
-  stroke-linejoin: none;
-  stroke-linecap: none;
-  pointer-events: none;
-}
-
-</style>
-
+<link rel="stylesheet" href="./styles.css">
 <script
 src="https://code.jquery.com/jquery-3.2.1.min.js"
 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
-<script src="./pp_api_request.js"></script>
+<script src="pp_api_request.js"></script>
 <!-- above script contents without PP_API_KEY:
     $.ajax({
       url: 'https://api.propublica.org/congress/v1/115/senate/members.json',
@@ -43,19 +13,31 @@ crossorigin="anonymous"></script>
       }, success: (data) => window.ajax_success(data)
     });
  -->
+<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="jquery.modal.min.css" type="text/css" media="screen" />
 <div id="main">
   <div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/US-Senate-Logo.svg" />
+    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/US-Senate-Logo.svg" /> -->
+
   </div>
-  <svg width="960" height="600"></svg>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/topojson.v2.min.js"></script>
-    <script src="./map_render.js"></script>
-  <div id="info-box">
-    <h1 id='header'>Click on a State</h1>
-    <section id='state-info'></section>
-    <img id='test-img-0' />
-    <img id='test-img-1' />
-    <div id="twitter-timeline-container"></div>
+  <div class='mapnbuttons'>
+    <div>
+      <svg class='map-svg' width="960" height="600"></svg>
+        <script src="d3.v4.min.js"></script>
+        <script src="topojson.v2.min.js"></script>
+        <script src="map_render.js"></script>
+    </div>
+    <div class="buttons">
+      <div>
+        <div class="btnDiv0">
+
+        </div>
+      </div>
+      <div>
+        <div class="btnDiv1">
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>

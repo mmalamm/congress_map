@@ -25,7 +25,7 @@ window.ajax_success = function(data) {
         case '0,2':
           return '#2B5CCE';
         default:
-          return '#40C471';
+          return '#267543';
       }
     };
     state.color = partyColor(sens);
@@ -65,41 +65,95 @@ let tooltip = d3.select('body')
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+const renderBtn = (num, name, st, party, tw_acc) => {
+  // let nameTag = $(`#sen-name-${num}`);
+  // let stateTag = $(`#sen-state-${num}`);
+  // let twHandleTag = $(`sen-tw-handle-${num}`);
+  // nameTag.replaceWith(`<h4 id='sen-name-${num}'>${name}</h4>`);
+  // stateTag.replaceWith(`<h5 id='sen-state'>${st}</h5>`);
+
+  let embedCode =  `<a class="twitter-timeline"
+                href="https://twitter.com/${tw_acc}"
+                data-tweet-limit="20">
+                Tweets by ${tw_acc}</a>
+                <script async src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"></script>`;
+
+  let btnColor = (party) => {
+    switch (party) {
+      case 'R':
+        return '#B24C63';
+      case 'D':
+        return '#2B5CCE';
+      default:
+        return '#267543';
+    }
+  };
+
+  let btnDiv = $(`.btnDiv${num}`);
+  btnDiv.empty();
+  btnDiv.append(
+    `
+    <div class='${party}-tag btnDiv${num}'>
+      <div class='btn-contents'>
+      <img height='150px' width='120px' id='sen-img-${num}' />
+      <p id='sen-info'>${name} (${party})
+        <br>
+        ${st}
+      </p>
+      </div>
+    </div>
+    <div id='twitter-timeline-container-${num}' >
+
+    </div>
+    `
+  );
+  renderImg(num, formatName(name));
+  $(`#twitter-timeline-container-${num}`).append($(embedCode));
+};
+
+
 const handleClick = (e) => {
   let stateName = e.target.state_abbr;
   let sens = senators.filter( senator => senator.state === stateName );
   let sen_names = sens.map( senator => senator.first_name + ' ' + senator.last_name );
-  $('#header').replaceWith(`<h1 id='header'>${state_hash[stateName]}</h1>`);
-  $('#state-info').replaceWith(`<h2 id='state-info'>${state_hash[stateName]} senators: ${sen_names[0]} (${sens[0].party}) and ${sen_names[1]} (${sens[1].party})</h2>`);
 
+  renderBtn(0, sen_names[0], state_hash[stateName], sens[0].party, sens[0].twitter_account);
+  renderBtn(1, sen_names[1], state_hash[stateName], sens[1].party, sens[1].twitter_account);
+};
 
-  let formatted_name_0 = sen_names[0].replace('Bob Casey','Bob Casey Jr.').replace('Jack Reed','Jack Reed (politician)').replace('Edward Markey', 'Ed Markey').replace('Margaret Hassan', 'Maggie Hassan').replace('Richard Durbin','Dick Durbin').replace('Gary Peters','Gary Peters (politician)').replace('Shelley Capito', 'Shelley Moore Capito').replace('James Inhofe','Jim Inhofe').replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie');
-  let formatted_name_1 = sen_names[1].replace('Michael Enzi', 'Mike Enzi').replace('Robert Menendez', 'Bob Menendez').replace('Christopher Murphy', 'Chris Murphy (Connecticut politician)').replace('Ron Johnson','Ron Johnson (U.S. politician)').replace(' III', '').replace(' ', '%20').replace('Charles', 'Chuck').replace('Bernard', 'Bernie').replace('Patrick','Pat');
-  $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name_0}&format=json&prop=pageimages&origin=*`, function(data) {
+const formatName = (sen_name) => {
+  let newname = sen_name.replace('Bob Casey','Bob Casey Jr.')
+    .replace('Jack Reed','Jack Reed (politician)')
+    .replace('Edward Markey', 'Ed Markey')
+    .replace('Margaret Hassan', 'Maggie Hassan')
+    .replace('Richard Durbin','Dick Durbin')
+    .replace('Gary Peters','Gary Peters (politician)')
+    .replace('Shelley Capito', 'Shelley Moore Capito')
+    .replace('James Inhofe','Jim Inhofe')
+    .replace('Charles Schumer', 'Chuck Schumer')
+    .replace('Bernard Sanders', 'Bernie Sanders')
+    .replace('Michael Enzi', 'Mike Enzi')
+    .replace('Robert Menendez', 'Bob Menendez')
+    .replace('Christopher Murphy', 'Chris Murphy (Connecticut politician)')
+    .replace('Ron Johnson','Ron Johnson (U.S. politician)')
+    .replace('Patrick Toomey','Pat Toomey')
+    .replace(' III', '')
+    .replace(' ', '%20');
+    return newname;
+};
+
+const renderImg = (num, sen_name) => {
+  $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${sen_name}&format=json&prop=pageimages&origin=*`, function(data) {
       window.wiki_result = data.query.pages;
-      test_dest_img(0, wiki_result[Object.keys(window.wiki_result)[0]]);
+      appendImg(num, wiki_result[Object.keys(window.wiki_result)[0]]);
   });
-  $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name_1}&format=json&prop=pageimages&origin=*`, function(data) {
-      window.wiki_result = data.query.pages;
-      test_dest_img(1, wiki_result[Object.keys(window.wiki_result)[0]]);
-  });
-  const test_dest_img = (num, { thumbnail }) => {
-    let piccy = thumbnail ? thumbnail.source : 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-128.png';
-    piccy = piccy.replace(/\d+px/, '150px');
-    $(`#test-img-${num}`).attr('src', piccy);
-  };
+};
 
-  let embedCode =  `<a class="twitter-timeline"
-                href="https://twitter.com/${sens[0].twitter_account}"
-                data-tweet-limit="20">
-                Tweets by ${sens[0].twitter_account}</a>
-                <script async src="https://platform.twitter.com/widgets.js"
-                charset="utf-8"></script>`;
-
-
-  $('#twitter-timeline-container').empty();
-  $('#twitter-timeline-container').append($(embedCode));
-
+const appendImg = (num, { thumbnail }) => {
+  let piccy = thumbnail ? thumbnail.source : 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-128.png';
+  piccy = piccy.replace(/\d+px/, '150px');
+  $(`#sen-img-${num}`).attr('src', piccy);
 };
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
