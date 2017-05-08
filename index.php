@@ -1,1 +1,1 @@
-<?php header( 'Location: /senwatch.html' ) ;  ?>
+<?php header( 'Location: /index.html' ) ;  ?>
