@@ -181,6 +181,7 @@ const handleHoverOff = (e) => {
 
 const handleFocus = (e) => {
   e.target.style.fill = '#C7C44B';
+  e.target.style.outline = 'none';
 };
 
 let iter = 0;
