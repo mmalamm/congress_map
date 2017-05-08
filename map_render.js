@@ -83,6 +83,8 @@ const renderBtn = (num, name, st, sen) => {
           <br>
           Web: <a href='https://${sen.domain}'>${sen.domain}</a>
           <br>
+          Phone: ${sen.phone}
+          <br>
           <img class='nav_logo' src='src/twitter_logo.svg' /> ${sen.twitter_account}
           <br>
           Next Election: ${sen.next_election}
