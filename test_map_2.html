@@ -1,43 +1,71 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="./styles.css">
-<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-crossorigin="anonymous"></script>
-<script src="pp_api_request.js"></script>
-<!-- above script contents without PP_API_KEY:
-    $.ajax({
-      url: 'https://api.propublica.org/congress/v1/115/senate/members.json',
-      beforeSend: function(xhr) {
-           xhr.setRequestHeader("X-API-Key", PP_API_KEY);
-      }, success: (data) => window.ajax_success(data)
-    });
- -->
-<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="jquery.modal.min.css" type="text/css" media="screen" />
-<div id="main">
-  <div>
-    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/US-Senate-Logo.svg" /> -->
+<head>
+  <title>Congress Map</title>
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="pp_api_request.js"></script>
+  <!-- above script contents without PP_API_KEY:
+  $.ajax({
+  url: 'https://api.propublica.org/congress/v1/115/senate/members.json',
+  beforeSend: function(xhr) {
+  xhr.setRequestHeader("X-API-Key", PP_API_KEY);
+}, success: (data) => window.ajax_success(data)
+});
+-->
+  <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="jquery.modal.min.css" type="text/css" media="screen" />
+</head>
+<body>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/US-Senate-Logo.svg" />
+    <nav>
+      Coded with ♥ by M M Alam
+      <br>
+      <a href="https://github.com/mmalamm/congress_map">
+        <img class='nav_logo' src="github_logo.svg" alt="">
+        Project Repo
+      </a>
+      <br>
+      <a href="https://www.linkedin.com/in/muhammad-alam-984317112/">
+        <img class='nav_logo' src="linkedin_logo.svg" alt="">
+        M M Alam
+      </a>
+      <br>
+      <a href="https://www.mmtutor.com/">
+        <img class='nav_logo' src="https://upload.wikimedia.org/wikipedia/commons/d/da/WWW_balloon.svg" alt="">
+        M M Alam
+      </a>
 
-  </div>
-  <div class='mapnbuttons'>
-    <div>
-      <svg class='map-svg' width="960" height="600"></svg>
-        <script src="d3.v4.min.js"></script>
-        <script src="topojson.v2.min.js"></script>
-        <script src="map_render.js"></script>
-    </div>
-    <div class="buttons">
+    </nav>
+  </header>
+  <h1>SenWatch</h1>
+  <section id="main">
+    <div class='mapnbuttons'>
       <div>
-        <div class="btnDiv0">
+        <svg class='map-svg' width="960" height="600"></svg>
+          <script src="d3.v4.min.js"></script>
+          <script src="topojson.v2.min.js"></script>
+          <script src="map_render.js"></script>
+      </div>
+      <div class='top-text'>
+        <h1 id="heading">Click on a State to See Senators</h1>
+      </div>
+      <div class="buttons">
+        <div>
+          <div class="btnDiv0">
 
+          </div>
+        </div>
+        <div>
+          <div class="btnDiv1">
+
+          </div>
         </div>
       </div>
-      <div>
-        <div class="btnDiv1">
-
-        </div>
-      </div>
     </div>
-  </div>
-</div>
+  </section>
+</body>

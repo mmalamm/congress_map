@@ -65,46 +65,30 @@ let tooltip = d3.select('body')
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-const renderBtn = (num, name, st, party, tw_acc) => {
-  // let nameTag = $(`#sen-name-${num}`);
-  // let stateTag = $(`#sen-state-${num}`);
-  // let twHandleTag = $(`sen-tw-handle-${num}`);
-  // nameTag.replaceWith(`<h4 id='sen-name-${num}'>${name}</h4>`);
-  // stateTag.replaceWith(`<h5 id='sen-state'>${st}</h5>`);
-
+const renderBtn = (num, name, st, sen) => {
   let embedCode =  `<a class="twitter-timeline"
-                href="https://twitter.com/${tw_acc}"
-                data-tweet-limit="20">
-                Tweets by ${tw_acc}</a>
+                href="https://twitter.com/${sen.twitter_account}"
+                data-tweet-limit="5">
+                Tweets by ${sen.twitter_account}</a>
                 <script async src="https://platform.twitter.com/widgets.js"
                 charset="utf-8"></script>`;
 
-  let btnColor = (party) => {
-    switch (party) {
-      case 'R':
-        return '#B24C63';
-      case 'D':
-        return '#2B5CCE';
-      default:
-        return '#267543';
-    }
-  };
-
   let btnDiv = $(`.btnDiv${num}`);
-  btnDiv.empty();
-  btnDiv.append(
+  btnDiv.empty().append(
     `
-    <div class='${party}-tag btnDiv${num}'>
-      <div class='btn-contents'>
-      <img height='150px' width='120px' id='sen-img-${num}' />
-      <p id='sen-info'>${name} (${party})
-        <br>
-        ${st}
-      </p>
+    <div class='info-box'>
+      <div style='background-color: ${btnColor(sen.party)}' btnDiv${num}'>
+        <div class='btn-contents'>
+        <img height='150px' width='120px' class='sen-img'  id='sen-img-${num}' style='border: 10px solid ${btnColor(sen.party)}' />
+        <p id='sen-info'>${name} (${sen.party})
+          <br>
+          ${st}
+        </p>
+        </div>
       </div>
-    </div>
-    <div id='twitter-timeline-container-${num}' >
+      <div class='tw-feed' style='border: 10px solid ${btnColor(sen.party)}'  id='twitter-timeline-container-${num}' >
 
+      </div>
     </div>
     `
   );
@@ -112,14 +96,24 @@ const renderBtn = (num, name, st, party, tw_acc) => {
   $(`#twitter-timeline-container-${num}`).append($(embedCode));
 };
 
+const btnColor = (party) => {
+  switch (party) {
+    case 'R':
+      return '#B24C63';
+    case 'D':
+      return '#2B5CCE';
+    default:
+      return '#267543';
+  }
+};
 
 const handleClick = (e) => {
   let stateName = e.target.state_abbr;
   let sens = senators.filter( senator => senator.state === stateName );
   let sen_names = sens.map( senator => senator.first_name + ' ' + senator.last_name );
-
-  renderBtn(0, sen_names[0], state_hash[stateName], sens[0].party, sens[0].twitter_account);
-  renderBtn(1, sen_names[1], state_hash[stateName], sens[1].party, sens[1].twitter_account);
+  $('#heading').empty().append(`<h1 id='heading'>${state_hash[stateName]} Senators</h1>`);
+  renderBtn(0, sen_names[0], state_hash[stateName], sens[0]);
+  renderBtn(1, sen_names[1], state_hash[stateName], sens[1]);
 };
 
 const formatName = (sen_name) => {
