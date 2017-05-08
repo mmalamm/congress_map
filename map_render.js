@@ -82,10 +82,13 @@ const renderBtn = (num, name, st, sen) => {
         <p id='sen-info'><strong>${name} (${sen.party}-${sen.state})</strong>
           <br>
           <br>
-          Web: <a href='https://${sen.domain}'>${sen.domain}</a>
+          <img class='nav_logo' src='src/twitter_logo.svg' /> ${sen.twitter_account}
           <br>
+          Next Election: ${sen.next_election}
           <br>
           Phone: ${sen.phone}
+          <br>
+          <a href='https://${sen.domain}'>${sen.domain}</a>
           <br>
           <br>
           Office: ${sen.office.replace('Senate Office Building', '')}
@@ -93,9 +96,6 @@ const renderBtn = (num, name, st, sen) => {
             Senate Office Building
           <br>
           <br>
-          <img class='nav_logo' src='src/twitter_logo.svg' /> ${sen.twitter_account}
-          <br>
-          Next Election: ${sen.next_election}
         </p>
       </div>
       </div>
