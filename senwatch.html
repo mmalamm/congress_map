@@ -16,8 +16,6 @@
 }, success: (data) => window.ajax_success(data)
 });
 -->
-  <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" href="jquery.modal.min.css" type="text/css" media="screen" />
 </head>
 <body>
   <header>
@@ -26,12 +24,12 @@
       Coded with ♥ by M M Alam
       <br>
       <a href="https://github.com/mmalamm/congress_map">
-        <img class='nav_logo' src="github_logo.svg" alt="">
+        <img class='nav_logo' src="src/github_logo.svg" alt="">
         Project Repo
       </a>
       <br>
       <a href="https://www.linkedin.com/in/muhammad-alam-984317112/">
-        <img class='nav_logo' src="linkedin_logo.svg" alt="">
+        <img class='nav_logo' src="src/linkedin_logo.svg" alt="">
         M M Alam
       </a>
       <br>
@@ -47,25 +45,27 @@
     <div class='mapnbuttons'>
       <div>
         <svg class='map-svg' width="960" height="600"></svg>
-          <script src="d3.v4.min.js"></script>
-          <script src="topojson.v2.min.js"></script>
+          <script src="src/d3.v4.min.js"></script>
+          <script src="src/topojson.v2.min.js"></script>
           <script src="map_render.js"></script>
       </div>
-      <div class='top-text'>
-        <h1 id="heading">Click on a State to See Senators</h1>
-      </div>
-      <div class="buttons">
-        <div>
-          <div class="btnDiv0">
+      <aside>
+        <div class='top-text'>
+          <h1 id="heading">Click on a State to See Senators</h1>
+        </div>
+        <div id="buttons">
+          <div>
+            <div class="btnDiv0">
 
+            </div>
+          </div>
+          <div>
+            <div class="btnDiv1">
+
+            </div>
           </div>
         </div>
-        <div>
-          <div class="btnDiv1">
-
-          </div>
-        </div>
-      </div>
+      </aside>
     </div>
   </section>
 </body>
