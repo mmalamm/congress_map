@@ -99,7 +99,7 @@ const renderBtn = (num, name, st, sen) => {
         </p>
       </div>
       </div>
-      <div class='tw-feed' style='border: 10px solid ${btnColor(sen.party)}'  id='twitter-timeline-container-${num}' >
+      <div class='tw-feed' style='border: 10px solid ${btnColor(sen.party)};background-color:${btnColor(sen.party)}'  id='twitter-timeline-container-${num}' >
 
       </div>
     </div>

@@ -111,6 +111,7 @@ header img {
 .infobox {
   margin: 200px;
 }
+
 #buttons > div > * {
   margin: 20px;
 
@@ -118,6 +119,7 @@ header img {
 
 .btnDiv0, .btnDiv1 {
   box-sizing: border-box;
+  box-shadow: 3px 2px 2px #001E3B;
 }
 
 
