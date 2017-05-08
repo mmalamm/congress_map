@@ -178,8 +178,10 @@ const state_hash = { "AL": "Alabama", "AK": "Alaska", "AS": "American Samoa", "A
 
 const handleHoverOn = (e) => {
   e.target.style.fill = '#FFFC61';
+  e.target.style.cursor = 'pointer';
   tooltip.transition().style('opacity',1);
       tooltip.html(state_hash[e.target.state_abbr])
+      .style('pointer-events', 'none')
       .style('left',(e.pageX - 50)+'px')
       .style('top',(e.pageY + 50)+'px');
 };
