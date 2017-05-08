@@ -121,10 +121,10 @@ const btnColor = (party) => {
 };
 
 const handleClick = (e) => {
+  document.getElementById('sens-info').scrollIntoView();
   let stateName = e.target.state_abbr;
   let sens = senators.filter( senator => senator.state === stateName );
   let sen_names = sens.map( senator => senator.first_name + ' ' + senator.last_name );
-  document.getElementById('sens-info').scrollIntoView();
   $('#heading').empty().append(`<h1 id='heading'>${state_hash[stateName]} Senators</h1>`);
   renderBtn(0, sen_names[0], state_hash[stateName], sens[0]);
   renderBtn(1, sen_names[1], state_hash[stateName], sens[1]);
