@@ -1,38 +1,3 @@
-window.ajax_success = function(data) {
-  window.result_object = data.results;
-  window.senators = data.results[0].members;
-  mmm.forEach( state => {
-    let sens = senators.filter(senator => senator.state === state.state_abbr);
-    const partyColor = (sens) => {
-      let repub = 0, dem = 0, othr = 0;
-      sens.forEach(sen => {
-        switch (sen.party) {
-          case "R":
-            repub++;
-            break;
-          case "D":
-            dem++;
-            break;
-          default:
-            othr++;
-        }
-      });
-      switch ([repub,dem].toString()) {
-        case '2,0':
-          return '#B24C63';
-        case '1,1':
-          return '#6E28A3';
-        case '0,2':
-          return '#2B5CCE';
-        default:
-          return '#267543';
-      }
-    };
-    state.color = partyColor(sens);
-    state.style.fill = state.color;
-  });
-};
-
 var statesGeoJSON = 'https://d3js.org/us-10m.v1.json';
 
 var svg = d3.select("svg");
@@ -73,6 +38,9 @@ const renderBtn = (num, name, st, sen) => {
     // case 'f_name l_name':
     //   sen.twitter_account = 'twitterAccount';
     //   break;
+    case 'Rand Paul':
+      sen.twitter_account = 'RandPaul';
+      break;
     case 'Amy Klobuchar':
       sen.twitter_account = 'AmyKlobuchar';
       break;
@@ -157,7 +125,8 @@ const handleClick = (e) => {
 };
 
 const formatName = (sen_name) => {
-  let newname = sen_name.replace('Bob Casey','Bob Casey Jr.')
+  let newname = sen_name
+    .replace('Bob Casey','Bob Casey Jr.')
     .replace('Jack Reed','Jack Reed (politician)')
     .replace('Edward Markey', 'Ed Markey')
     .replace('Margaret Hassan', 'Maggie Hassan')
