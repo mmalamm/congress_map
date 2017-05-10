@@ -167,6 +167,7 @@ const formatName = (sen_name) => {
     .replace('John Kennedy', 'John Neely Kennedy') //Louisiana
     .replace('Dan Sullivan', 'Dan Sullivan (U.S. Senator)') //Alaska
     .replace('Michael Crapo', 'Mike Crapo') //Idaho
+    .replace('Mike Lee', 'Mike Lee (U.S. politician)') //Utah
     .replace('Christopher Coons', 'Chris Coons')
     .replace('Thomas Carper', 'Tom Carper')
     .replace('Benjamin Cardin', 'Ben Cardin')
@@ -198,9 +199,9 @@ const renderImg = (num, sen_name) => {
 };
 
 const appendImg = (num, { thumbnail }) => {
-  let piccy = thumbnail ? thumbnail.source : 'src/congress-icon.svg';
-  piccy = piccy.replace(/\d+px/, '150px');
-  $(`#sen-img-${num}`).attr('src', piccy);
+  let profile_pic = thumbnail ? thumbnail.source : 'src/congress-icon.svg';
+  profile_pic = profile_pic.replace(/\d+px/, '200px');
+  $(`#sen-img-${num}`).attr('src', profile_pic);
 };
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
