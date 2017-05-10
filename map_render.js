@@ -127,27 +127,27 @@ const btnColor = (party) => {
 const handleClick = (e) => {
   document.getElementById('sens-info').scrollIntoView();
   let stateName = e.target.state_abbr;
-  let pres = { first_name: 'Donald',
-                last_name: 'Trump',
-                twitter_account: 'realDonaldTrump',
-                party: 'R', state: 'NY',
-                next_election: '2020',
-                phone: '202-456-1414',
-                domain: 'https://www.whitehouse.gov/',
-                office: '1600 Pennsylvania Ave',
-                title: 'President'
-              };
-  let v_pres = { first_name: 'Mike',
-                last_name: 'Pence',
-                twitter_account: 'VP',
-                party: 'R', state: 'IN',
-                next_election: '2020',
-                phone: '202-456-1414',
-                domain: 'https://www.whitehouse.gov/',
-                office: '1600 Pennsylvania Ave',
-                title: 'Vice President'
-              };
   if (stateName === 'DC') {
+    let pres = { first_name: 'Donald',
+      last_name: 'Trump',
+      twitter_account: 'realDonaldTrump',
+      party: 'R', state: 'NY',
+      next_election: '2020',
+      phone: '202-456-1414',
+      domain: 'https://www.whitehouse.gov/',
+      office: '1600 Pennsylvania Ave',
+      title: 'President'
+    };
+    let v_pres = { first_name: 'Mike',
+      last_name: 'Pence',
+      twitter_account: 'VP',
+      party: 'R', state: 'IN',
+      next_election: '2020',
+      phone: '202-456-1414',
+      domain: 'https://www.whitehouse.gov/',
+      office: '1600 Pennsylvania Ave',
+      title: 'Vice President'
+    };
     $('#heading').empty().append(`<h1 id='heading'>${state_hash[stateName]} Has No Senators</h1>`);
     renderBtn(0, 'Donald Trump', 'USA', pres);
     renderBtn(1, 'Mike Pence', 'USA', v_pres);
@@ -164,6 +164,7 @@ const handleClick = (e) => {
 
 const formatName = (sen_name) => {
   let newname = sen_name
+    .replace('Charles Grassley', 'Chuck Grassley') // Iowa
     .replace('John Kennedy', 'John Neely Kennedy') //Louisiana
     .replace('Dan Sullivan', 'Dan Sullivan (U.S. Senator)') //Alaska
     .replace('Michael Crapo', 'Mike Crapo') //Idaho
