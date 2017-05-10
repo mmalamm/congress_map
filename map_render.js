@@ -33,7 +33,6 @@ let tooltip = d3.select('body')
 const renderBtn = (num, name, st, sen) => {
 
   //proplublica corrections
-  sen.twitter_account = sen.twitter_account.replace('RepToddYoung', 'SenToddYoung');
   switch (sen.first_name + ' ' + sen.last_name) {
     // case 'f_name l_name':
     //   sen.twitter_account = 'twitterAccount';
@@ -57,6 +56,18 @@ const renderBtn = (num, name, st, sen) => {
       sen = sen;
   }
   //////
+  let votePartyPct = (sen) => {
+
+    switch (sen.title) {
+      case 'President':
+        return 'President of the United States';
+      case 'Vice President':
+        return 'Vice President of the United States';
+      default:
+        return `Votes with party <span style="font-weight:bolder;font-size:18px">${sen.votes_with_party_pct}%</span> of the time`;
+    }
+  };
+
 
   let embedCode =  `<a class="twitter-timeline"
                 href="https://twitter.com/${sen.twitter_account}"
@@ -85,10 +96,10 @@ const renderBtn = (num, name, st, sen) => {
           <br>
           Office: ${sen.office.replace('Senate Office Building', '')}
           <br>
-            Senate Office Building
+            ${st === 'USA' ? 'The White House' : 'Senate Office Building'}
           <br>
           <br>
-            Votes with party <span style="font-weight:bolder;font-size:18px">${sen.votes_with_party_pct}%</span> of the time
+            ${votePartyPct(sen)}
         </p>
       </div>
       </div>
@@ -116,16 +127,48 @@ const btnColor = (party) => {
 const handleClick = (e) => {
   document.getElementById('sens-info').scrollIntoView();
   let stateName = e.target.state_abbr;
+  let pres = { first_name: 'Donald',
+                last_name: 'Trump',
+                twitter_account: 'realDonaldTrump',
+                party: 'R', state: 'NY',
+                next_election: '2020',
+                phone: '202-456-1414',
+                domain: 'https://www.whitehouse.gov/',
+                office: '1600 Pennsylvania Ave',
+                title: 'President'
+              };
+  let v_pres = { first_name: 'Mike',
+                last_name: 'Pence',
+                twitter_account: 'VP',
+                party: 'R', state: 'IN',
+                next_election: '2020',
+                phone: '202-456-1414',
+                domain: 'https://www.whitehouse.gov/',
+                office: '1600 Pennsylvania Ave',
+                title: 'Vice President'
+              };
+  if (stateName === 'DC') {
+    $('#heading').empty().append(`<h1 id='heading'>${state_hash[stateName]} Has No Senators</h1>`);
+    renderBtn(0, 'Donald Trump', 'USA', pres);
+    renderBtn(1, 'Mike Pence', 'USA', v_pres);
+
+    return;
+  }
+
   let sens = senators.filter( senator => senator.state === stateName );
   let sen_names = sens.map( senator => senator.first_name + ' ' + senator.last_name );
   $('#heading').empty().append(`<h1 id='heading'>${state_hash[stateName]} Senators</h1>`);
   renderBtn(0, sen_names[0], state_hash[stateName], sens[0]);
   renderBtn(1, sen_names[1], state_hash[stateName], sens[1]);
-
 };
 
 const formatName = (sen_name) => {
   let newname = sen_name
+    .replace('John Kennedy', 'John Neely Kennedy') //Louisiana
+    .replace('Dan Sullivan', 'Dan Sullivan (U.S. Senator)') //Alaska
+    .replace('Christopher Coons', 'Chris Coons')
+    .replace('Thomas Carper', 'Tom Carper')
+    .replace('Benjamin Cardin', 'Ben Cardin')
     .replace('Bob Casey','Bob Casey Jr.')
     .replace('Jack Reed','Jack Reed (politician)')
     .replace('Edward Markey', 'Ed Markey')
