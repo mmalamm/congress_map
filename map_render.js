@@ -69,6 +69,25 @@ const renderBtn = (num, name, st, sen) => {
 
   //proplublica corrections
   sen.twitter_account = sen.twitter_account.replace('RepToddYoung', 'SenToddYoung');
+  switch (sen.first_name + ' ' + sen.last_name) {
+    // case 'f_name l_name':
+    //   sen.twitter_account = 'twitterAccount';
+    //   break;
+    case 'Amy Klobuchar':
+      sen.twitter_account = 'AmyKlobuchar';
+      break;
+    case 'Jeff Sessions':
+      sen.twitter_account = 'USAGSessions';
+      break;
+    case 'Todd Young':
+      sen.twitter_account = 'SenToddYoung';
+      break;
+    case 'Bill Cassidy':
+      sen.twitter_account = 'BillCassidy';
+      break;
+    default:
+      sen = sen;
+  }
   //////
 
   let embedCode =  `<a class="twitter-timeline"
