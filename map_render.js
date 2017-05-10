@@ -166,6 +166,7 @@ const formatName = (sen_name) => {
   let newname = sen_name
     .replace('John Kennedy', 'John Neely Kennedy') //Louisiana
     .replace('Dan Sullivan', 'Dan Sullivan (U.S. Senator)') //Alaska
+    .replace('Michael Crapo', 'Mike Crapo') //Idaho
     .replace('Christopher Coons', 'Chris Coons')
     .replace('Thomas Carper', 'Tom Carper')
     .replace('Benjamin Cardin', 'Ben Cardin')
