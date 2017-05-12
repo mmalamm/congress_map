@@ -21,7 +21,7 @@ In addition, this project will include:
 
 This app will consist of a single screen with map, sidebar with politicians, and nav links to the Github, my LinkedIn, and the About modal. Controls and options will include, choosing a state from the map to bring up a list of elected officials, and choosing an official from the list to bring up a show page.
 
-![wireframes](./Interactive_congress_map.jpg)
+![wireframes](./assets/images/Interactive_congress_map.jpg)
 
 ### Architecture and Technologies
 

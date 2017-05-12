@@ -2,12 +2,12 @@
 <head>
   <title>SenWatch</title>
   <!-- <link rel="stylesheet" href="./styles.css"> -->
-  <link rel='shortcut icon' type='icon' href="src/congress-icon.ico" />
+  <link rel='shortcut icon' type='icon' href="assets/images/congress-icon.ico" />
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-  <script src="pp_api_request.js"></script>
+  <script src="lib/pp_api_request.js"></script>
   <!-- above script contents without PP_API_KEY:
   $.ajax({
   url: 'https://api.propublica.org/congress/v1/115/senate/members.json',
@@ -42,12 +42,12 @@
       Coded by M M Alam
       <br>
       <a href="https://github.com/mmalamm/congress_map">
-        <img class='nav_logo' src="src/github_logo.svg" alt="">
+        <img class='nav_logo' src="assets/images/github_logo.svg" alt="">
         Project Repo
       </a>
       <br>
       <a href="https://www.linkedin.com/in/muhammad-alam-984317112/">
-        <img class='nav_logo' src="src/linkedin_logo.svg" alt="">
+        <img class='nav_logo' src="assets/images/linkedin_logo.svg" alt="">
         M M Alam
       </a>
       <br>
@@ -63,9 +63,9 @@
     <div class='mapnbuttons'>
       <div>
         <svg class='map-svg' width="960" height="600"></svg>
-          <script src="src/d3.v4.min.js"></script>
-          <script src="src/topojson.v2.min.js"></script>
-          <script src="map_render.js"></script>
+          <script src="lib/d3.v4.min.js"></script>
+          <script src="lib/topojson.v2.min.js"></script>
+          <script src="lib/map_render.js"></script>
       </div>
       <aside id='sens-info'>
         <div class='top-text'>
@@ -90,5 +90,5 @@
     </div>
   </section>
   <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./assets/stylesheets/styles.css">
 </body>
