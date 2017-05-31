@@ -80,14 +80,11 @@ header img {
   pointer-events: none;
 }
 
-.map-svg {
-  /*border: 5px solid yellow;*/
-}
-
 .top-text {
   margin: 0 auto;
   width: 100%;
   text-align: center;
+  font-weight: bold;
 }
 
 #sen-info {
@@ -108,10 +105,6 @@ header img {
   display: flex;
 }
 
-.infobox {
-  margin: 200px;
-}
-
 #buttons > div > * {
   margin: 20px;
 
@@ -122,7 +115,10 @@ header img {
   box-shadow: 3px 2px 2px #001E3B;
 }
 
-
 .mapnbuttons {
   display: block;
+}
+
+.xtra-info {
+  padding: 0px 15px;
 }
