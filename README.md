@@ -15,7 +15,7 @@ for AJAX requests, with JSONP for CORS and cURL for request headers
 ## API Resources
 
 #### ProPublica API
-for contact information of senators
+for information on senators
 #### Wikipedia API
 for images of senators. Required use of JSONP for CORS via getJSON jQuery method
 #### Twitter API
